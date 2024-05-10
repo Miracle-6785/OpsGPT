@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  frontend:
+    depends_on:
+      - backend
+    build: ./frontend
+    ports:
+        - 5173:5173
+    networks:
+      - frontend
+
+  backend:
+    depends_on:
+      - mongodb
+    build: ./backend
+    restart: unless-stopped
+    ports:
+     - 5001:5001
+    environment:
+      - DB_HOST=mongodb
+      - DB_USER=miracleiztb
+      - DB_PASSWORD=miracle
+      - DB_NAME=test
+      - DB_PORT=27017
+      - CLIENT_ORIGIN=http://localhost:5173
+    networks:
+      - backend
+      - frontend
+
+  mongodb:
+    image: mongo:7.0-jammy
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=miracleiztb
+      - MONGO_INITDB_ROOT_PASSWORD=miracle
+    ports:
+      - 7017:27017
+    volumes:
+      - db:/data/db
+    networks:
+      - backend
+
+volumes:
+  db:
+
+networks:
+  backend:
+  frontend:

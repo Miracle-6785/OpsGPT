@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -13,14 +13,14 @@ const Footer = () => {
         }}
       >
         <p style={{ fontSize: "30px", textAlign: "center", padding: "20px" }}>
-          Built With love by
+          Built With Love By
           <span>
             <Link
               style={{ color: "white" }}
               className="nav-link"
-              to={"https://youtube.com/indiancoders"}
+              to={"https://github.com/Miracle-6785"}
             >
-              Indian Coders
+              MIRACLE
             </Link>
           </span>
           💘
