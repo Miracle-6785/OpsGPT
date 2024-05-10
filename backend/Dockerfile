@@ -4,7 +4,11 @@ WORKDIR /mern-chatbot/backend
 
 COPY package.json .
 
-RUN npm install 
+RUN apk update && \
+    apk upgrade && \
+    npm update -g && \
+    npm install && \
+    npm cache clean --force
 
 COPY . .
 
